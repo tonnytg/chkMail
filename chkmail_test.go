@@ -1,16 +1,38 @@
 package chkmail
 
 import (
-	"fmt"
 	"testing"
 )
 
-// Test validations it's working
+// TestChkReg check the regex for email expression
 func TestChkReg(t *testing.T) {
-	mail := "test@domain.com"
-	m := ChkReg(mail)
-	fmt.Println(m)
-	if ! m {
-		t.Errorf("Email not pass")
+	validEmails := []string{
+		"test@domain.com",
+		"another.test@domain.co.uk",
+		"user123@example.org",
+		"email.with+symbol@example.com",
+		"email_with-dash@sub.example.com",
+	}
+
+	invalidEmails := []string{
+		"plainaddress",
+		"@missingusername.com",
+		"username@.com",
+		"username@com",
+		"username@com.",
+		"username@-domain.com",
+		"username@domain..com",
+	}
+
+	for _, email := range validEmails {
+		if !ChkReg(email) {
+			t.Errorf("Expected valid, but got invalid: %s", email)
+		}
+	}
+
+	for _, email := range invalidEmails {
+		if ChkReg(email) {
+			t.Errorf("Expected invalid, but got valid: %s", email)
+		}
 	}
 }
