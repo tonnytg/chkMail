@@ -1,4 +1,6 @@
 ## Go Module Valid Email
+[![Go](https://github.com/tonnytg/chkMail/actions/workflows/go.yml/badge.svg)](https://github.com/tonnytg/chkMail/actions/workflows/go.yml)
+
 
 This is a simple module for Go to validate a Email regex.
 
